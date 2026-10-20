@@ -6,149 +6,212 @@
 
     <title>CampusSpace</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <header class="header">
-        <div class="container header-content">
-            <div class="logo">
-                Campus<span>Space</span>
-            </div>
+<header class="header">
+    <div class="container header-content">
 
-            <div class="status">
-                ● Система работает
-            </div>
+        <div class="logo">
+            Campus<span>Space</span>
         </div>
-    </header>
 
-    <main class="container">
+        <div class="status">
+            ● Система работает
+        </div>
 
-        <section class="hero">
-            <h1>Поиск свободной аудитории</h1>
-
-            <p>
-                Найдите и забронируйте свободную аудиторию
-                в университете в реальном времени.
-            </p>
-        </section>
-
-        <section class="search-panel">
-
-            <div class="form-group">
-                <label for="date">Дата</label>
-                <input type="date" id="date">
-            </div>
-
-            <div class="form-group">
-                <label for="startTime">Начало</label>
-                <input type="time" id="startTime" value="10:00">
-            </div>
-
-            <div class="form-group">
-                <label for="endTime">Конец</label>
-                <input type="time" id="endTime" value="12:00">
-            </div>
-
-            <div class="form-group">
-                <label for="building">Корпус</label>
-
-                <select id="building">
-                    <option value="">Все корпуса</option>
-                    <option value="A">Корпус A</option>
-                    <option value="B">Корпус B</option>
-                    <option value="C">Корпус C</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="capacity">Вместимость</label>
-
-                <select id="capacity">
-                    <option value="">Любая</option>
-                    <option value="10">10+ человек</option>
-                    <option value="20">20+ человек</option>
-                    <option value="30">30+ человек</option>
-                    <option value="50">50+ человек</option>
-                </select>
-            </div>
-
-            <button id="searchButton" type="button">
-                Найти аудитории
-            </button>
-
-        </section>
+    </div>
+</header>
 
 
-        <section class="rooms-section">
+<main class="container">
 
-            <div class="section-title">
-                <h2>Свободные аудитории</h2>
+    <section class="hero">
 
-                <span id="roomCount">
-                    0 аудиторий
-                </span>
-            </div>
+        <h1>Поиск свободной аудитории</h1>
 
-            <div id="roomsList" class="rooms-list">
+        <p>
+            Найдите и забронируйте свободную аудиторию
+            в университете в реальном времени.
+        </p>
 
-                <div class="empty-state">
-                    <h3>Выберите параметры поиска</h3>
-
-                    <p>
-                        После поиска здесь появятся
-                        доступные аудитории.
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
+    </section>
 
 
-        <section class="my-bookings">
+    <section class="search-panel">
 
-            <div class="section-title">
-                <h2>Мои бронирования</h2>
-            </div>
-
-            <div id="bookingsList">
-
-                <div class="empty-state">
-                    <h3>Нет бронирований</h3>
-
-                    <p>
-                        Забронированные аудитории появятся здесь.
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
+        <div class="form-group">
+            <label for="date">Дата</label>
+            <input type="date" id="date">
+        </div>
 
 
-    <footer class="footer">
+        <div class="form-group">
+            <label for="startTime">Начало</label>
+            <input type="time" id="startTime" value="10:00">
+        </div>
 
-        <div class="container">
 
-            <p>
-                CampusSpace — система поиска и бронирования
-                университетских аудиторий
-            </p>
+        <div class="form-group">
+            <label for="endTime">Конец</label>
+            <input type="time" id="endTime" value="12:00">
+        </div>
 
-            <p>
-                Educational MVP Project · Lab 1 / Lab 2
-            </p>
+
+        <div class="form-group">
+            <label for="building">Корпус</label>
+
+            <select id="building">
+
+                <option value="">
+                    Все корпуса
+                </option>
+
+                <option value="Main Building">
+                    Main Building
+                </option>
+
+                <option value="Engineering Building">
+                    Engineering Building
+                </option>
+
+                <option value="Library">
+                    Library
+                </option>
+
+            </select>
 
         </div>
 
-    </footer>
+
+        <div class="form-group">
+
+            <label for="capacity">
+                Вместимость
+            </label>
+
+            <select id="capacity">
+
+                <option value="">
+                    Любая
+                </option>
+
+                <option value="10">
+                    10+ человек
+                </option>
+
+                <option value="20">
+                    20+ человек
+                </option>
+
+                <option value="30">
+                    30+ человек
+                </option>
+
+                <option value="40">
+                    40+ человек
+                </option>
+
+            </select>
+
+        </div>
 
 
-    <script src="app.js"></script>
+        <button id="searchButton" type="button">
+            Найти аудитории
+        </button>
+
+    </section>
+
+
+    <section class="rooms-section">
+
+        <div class="section-title">
+
+            <h2>
+                Свободные аудитории
+            </h2>
+
+            <span id="roomCount">
+                0 аудиторий
+            </span>
+
+        </div>
+
+
+        <div id="roomsList" class="rooms-list">
+
+            <div class="empty-state">
+
+                <h3>
+                    Загрузка аудиторий...
+                </h3>
+
+                <p>
+                    Подождите немного.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="my-bookings">
+
+        <div class="section-title">
+
+            <h2>
+                Мои бронирования
+            </h2>
+
+        </div>
+
+
+        <div id="bookingsList">
+
+            <div class="empty-state">
+
+                <h3>
+                    Нет бронирований
+                </h3>
+
+                <p>
+                    Забронированные аудитории появятся здесь.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container">
+
+        <p>
+            CampusSpace — система поиска и бронирования
+            университетских аудиторий
+        </p>
+
+        <p>
+            Educational MVP Project · Lab 1 / Lab 2
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
 
 </body>
 </html>
