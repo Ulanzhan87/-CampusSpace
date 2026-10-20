@@ -1,0 +1,36 @@
+@startuml
+
+class User {
+    +id: Integer
+    +name: String
+    +email: String
+    +role: String
+}
+
+class Room {
+    +id: Integer
+    +building: String
+    +roomNumber: String
+    +capacity: Integer
+    +equipment: String
+}
+
+class Booking {
+    +id: Integer
+    +startTime: DateTime
+    +endTime: DateTime
+    +status: String
+    +create()
+    +cancel()
+}
+
+class Admin {
+    +manageRooms()
+    +viewBookings()
+}
+
+User "1" --> "0..*" Booking : creates
+Room "1" --> "0..*" Booking : reserved
+Admin --|> User : extends
+
+@enduml
