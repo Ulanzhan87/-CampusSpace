@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CampusSpace</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                Campus<span>Space</span>
+            </div>
+
+            <div class="status">
+                ● Система работает
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="hero">
+            <h1>Поиск свободной аудитории</h1>
+
+            <p>
+                Найдите и забронируйте свободную аудиторию
+                в университете в реальном времени.
+            </p>
+        </section>
+
+        <section class="search-panel">
+
+            <div class="form-group">
+                <label for="date">Дата</label>
+                <input type="date" id="date">
+            </div>
+
+            <div class="form-group">
+                <label for="startTime">Начало</label>
+                <input type="time" id="startTime" value="10:00">
+            </div>
+
+            <div class="form-group">
+                <label for="endTime">Конец</label>
+                <input type="time" id="endTime" value="12:00">
+            </div>
+
+            <div class="form-group">
+                <label for="building">Корпус</label>
+
+                <select id="building">
+                    <option value="">Все корпуса</option>
+                    <option value="A">Корпус A</option>
+                    <option value="B">Корпус B</option>
+                    <option value="C">Корпус C</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="capacity">Вместимость</label>
+
+                <select id="capacity">
+                    <option value="">Любая</option>
+                    <option value="10">10+ человек</option>
+                    <option value="20">20+ человек</option>
+                    <option value="30">30+ человек</option>
+                    <option value="50">50+ человек</option>
+                </select>
+            </div>
+
+            <button id="searchButton" type="button">
+                Найти аудитории
+            </button>
+
+        </section>
+
+
+        <section class="rooms-section">
+
+            <div class="section-title">
+                <h2>Свободные аудитории</h2>
+
+                <span id="roomCount">
+                    0 аудиторий
+                </span>
+            </div>
+
+            <div id="roomsList" class="rooms-list">
+
+                <div class="empty-state">
+                    <h3>Выберите параметры поиска</h3>
+
+                    <p>
+                        После поиска здесь появятся
+                        доступные аудитории.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="my-bookings">
+
+            <div class="section-title">
+                <h2>Мои бронирования</h2>
+            </div>
+
+            <div id="bookingsList">
+
+                <div class="empty-state">
+                    <h3>Нет бронирований</h3>
+
+                    <p>
+                        Забронированные аудитории появятся здесь.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <p>
+                CampusSpace — система поиска и бронирования
+                университетских аудиторий
+            </p>
+
+            <p>
+                Educational MVP Project · Lab 1 / Lab 2
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>
