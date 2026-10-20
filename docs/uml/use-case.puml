@@ -1,0 +1,33 @@
+@startuml
+left to right direction
+
+actor "Студент" as Student
+actor "Администратор" as Admin
+
+rectangle CampusSpace {
+    usecase "Просмотреть свободные\nаудитории" as UC1
+    usecase "Поиск по дате и времени" as UC2
+    usecase "Фильтр по корпусу" as UC3
+    usecase "Фильтр по вместимости" as UC4
+    usecase "Забронировать аудиторию" as UC5
+    usecase "Отменить бронирование" as UC6
+    usecase "Управлять аудиториями" as UC7
+    usecase "Просматривать бронирования" as UC8
+}
+
+Student --> UC1
+Student --> UC2
+Student --> UC3
+Student --> UC4
+Student --> UC5
+Student --> UC6
+
+Admin --> UC7
+Admin --> UC8
+
+UC5 ..> UC1 : <<include>>
+UC2 ..> UC1 : <<extend>>
+UC3 ..> UC1 : <<extend>>
+UC4 ..> UC1 : <<extend>>
+
+@enduml
