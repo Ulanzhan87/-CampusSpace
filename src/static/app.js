@@ -51,7 +51,7 @@ function renderRooms(rooms) {
 
             <span class="status">Свободна</span>
 
-            <button onclick="bookRoom('${room.room_number}')">
+            <button onclick="bookRoom(${room.id}, '${room.room_number}')">
                 Забронировать
             </button>
         </div>
@@ -59,7 +59,8 @@ function renderRooms(rooms) {
 }
 
 
-function bookRoom(roomNumber) {
+async function bookRoom(roomId, roomNumber) {
+
     const name = prompt(
         "Введите ваше имя для бронирования аудитории " +
         roomNumber
@@ -69,11 +70,63 @@ function bookRoom(roomNumber) {
         return;
     }
 
-    alert(
-        "Заявка на бронирование аудитории " +
-        roomNumber +
-        " создана для " +
-        name +
-        "."
-    );
+    const date = document.getElementById("date").value;
+    const startTime = document.getElementById("startTime").value;
+    const endTime = document.getElementById("endTime").value;
+
+    if (!date || !startTime || !endTime) {
+        alert(
+            "Сначала выберите дату, время начала и время окончания."
+        );
+        return;
+    }
+
+    const startTimeValue = `${date}T${startTime}`;
+    const endTimeValue = `${date}T${endTime}`;
+
+    if (endTimeValue <= startTimeValue) {
+        alert("Время окончания должно быть позже времени начала.");
+        return;
+    }
+
+    try {
+        const response = await fetch("/api/bookings", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                room_id: roomId,
+                student_name: name,
+                start_time: startTimeValue,
+                end_time: endTimeValue
+            })
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            alert(result.error || "Не удалось создать бронирование.");
+            return;
+        }
+
+        alert(
+            "✅ Аудитория " +
+            roomNumber +
+            " успешно забронирована для " +
+            name +
+            "!"
+        );
+
+        searchRooms();
+
+    } catch (error) {
+        console.error(error);
+        alert("Ошибка соединения с сервером.");
+    }
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    searchRooms();
+});
