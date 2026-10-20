@@ -1,0 +1,24 @@
+@startuml
+
+actor "Студент" as Student
+participant "Web Interface" as UI
+participant "Flask API" as API
+database "SQLite" as DB
+
+Student -> UI: Выбирает аудиторию и время
+UI -> API: POST /api/bookings
+
+API -> DB: Проверить конфликты
+DB --> API: Результат проверки
+
+alt Аудитория свободна
+    API -> DB: Создать бронирование
+    DB --> API: ID бронирования
+    API --> UI: 201 Created
+    UI --> Student: Показать подтверждение
+else Аудитория занята
+    API --> UI: 409 Conflict
+    UI --> Student: Показать ошибку
+end
+
+@enduml
