@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusSpace</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #172033;
+        }
+
+        header {
+            background: #10233f;
+            color: white;
+            padding: 24px;
+        }
+
+        header h1 {
+            margin: 0 0 6px;
+            font-size: 30px;
+        }
+
+        header p {
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .search-box h2 {
+            margin-top: 0;
+        }
+
+        .filters {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccd5e2;
+            font-size: 15px;
+        }
+
+        button {
+            background: #1677ff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #0d63d5;
+        }
+
+        .rooms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 18px;
+        }
+
+        .room {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .room h3 {
+            margin-top: 0;
+            color: #10233f;
+        }
+
+        .room p {
+            margin: 8px 0;
+            color: #566276;
+        }
+
+        .status {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 6px 10px;
+            border-radius: 20px;
+            background: #dff7e8;
+            color: #19743a;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #7a8495;
+        }
+
+        @media (max-width: 700px) {
+            .filters {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>CampusSpace</h1>
+    <p>Поиск и бронирование свободных аудиторий</p>
+</header>
+
+<main>
+
+    <section class="search-box">
+        <h2>Найти свободную аудиторию</h2>
+
+        <div class="filters">
+            <input type="date" id="date">
+
+            <input type="time" id="startTime">
+
+            <input type="time" id="endTime">
+
+            <select id="building">
+                <option value="">Все корпуса</option>
+                <option value="Main Building">Main Building</option>
+                <option value="Engineering Building">
+                    Engineering Building
+                </option>
+                <option value="Library">Library</option>
+            </select>
+
+            <input
+                type="number"
+                id="capacity"
+                placeholder="Минимальная вместимость"
+                min="1"
+            >
+
+            <button onclick="searchRooms()">
+                Найти аудитории
+            </button>
+        </div>
+    </section>
+
+    <section>
+        <h2>Доступные аудитории</h2>
+
+        <div class="rooms" id="rooms">
+
+            <div class="room">
+                <h3>A-101</h3>
+                <p>📍 Main Building</p>
+                <p>👥 Вместимость: 20</p>
+                <p>🖥 Projector, Wi-Fi</p>
+
+                <span class="status">Свободна</span>
+
+                <button onclick="bookRoom('A-101')">
+                    Забронировать
+                </button>
+            </div>
+
+            <div class="room">
+                <h3>A-202</h3>
+                <p>📍 Main Building</p>
+                <p>👥 Вместимость: 30</p>
+                <p>🖥 Projector, Wi-Fi, Whiteboard</p>
+
+                <span class="status">Свободна</span>
+
+                <button onclick="bookRoom('A-202')">
+                    Забронировать
+                </button>
+            </div>
+
+            <div class="room">
+                <h3>B-201</h3>
+                <p>📍 Engineering Building</p>
+                <p>👥 Вместимость: 40</p>
+                <p>🖥 Projector, Computers</p>
+
+                <span class="status">Свободна</span>
+
+                <button onclick="bookRoom('B-201')">
+                    Забронировать
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    CampusSpace — учебный MVP-проект для Lab 1 / Lab 2
+</footer>
+
+<script>
+    function searchRooms() {
+        alert("Поиск свободных аудиторий запущен.");
+    }
+
+    function bookRoom(room) {
+        const name = prompt(
+            "Введите ваше имя для бронирования аудитории " + room
+        );
+
+        if (name) {
+            alert(
+                "Аудитория " + room +
+                " успешно забронирована для " + name + "."
+            );
+        }
+    }
+</script>
+
+</body>
+</html>
